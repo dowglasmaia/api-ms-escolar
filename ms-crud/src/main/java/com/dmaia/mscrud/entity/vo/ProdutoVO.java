@@ -3,6 +3,7 @@ package com.dmaia.mscrud.entity.vo;
 import java.io.Serializable;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 import com.dmaia.mscrud.entity.Produto;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,17 +11,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
 @JsonPropertyOrder({ "id", "nome", "preco", "estoque", })
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
-public class ProdutoVO implements Serializable {
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = false)
+public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("id")
