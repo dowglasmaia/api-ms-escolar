@@ -48,7 +48,7 @@ public class ProdutoController {
 		return produtoVO;
 	}
 
-	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml", })
+	@GetMapping( produces = { "application/json", "application/xml", "application/x-yaml" })
 	public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = " 0 ") int page,
 			@RequestParam(value = "limit", defaultValue = " 12 ") int limit,
 			@RequestParam(value = "page", defaultValue = " asc ") String direction) {
@@ -65,16 +65,16 @@ public class ProdutoController {
 		return new ResponseEntity<>(pageModel, HttpStatus.OK);
 	}
 
-	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = {
-			"application/json", "application/xml", "application/x-yaml" })
+	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
+				consumes = {"application/json", "application/xml", "application/x-yaml" })
 	public ResponseEntity<ProdutoVO> create(@RequestBody ProdutoVO obj) {
 		ProdutoVO produtoVO = produtoServices.create(obj);
 		produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
 		return ResponseEntity.ok().body(produtoVO);
 	}
 
-	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = {
-			"application/json", "application/xml", "application/x-yaml" })
+	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" }, 
+			consumes = {"application/json", "application/xml", "application/x-yaml" })
 	public ResponseEntity<ProdutoVO> update(@RequestBody ProdutoVO obj) {
 		ProdutoVO produtoVO = produtoServices.update(obj);
 		produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
