@@ -15,14 +15,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.maia.mspagamento.entity.vo.VendaVO;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "venda")
@@ -35,7 +41,7 @@ public class Venda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@DateTimeFormat(pattern = "MM/dd/yyyy")
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data", nullable = false)
 	private Date data;
 	
@@ -44,5 +50,10 @@ public class Venda implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = CascadeType.REFRESH)
 	private Set<ProdutoVenda>produtos =  new HashSet<>();
+	
+	/**@since converte Objeto VendaVO para Venda*/
+	public static Venda create(VendaVO vendaVO) {
+		 return new ModelMapper().map(vendaVO, Venda.class);
+	}
 
 }
