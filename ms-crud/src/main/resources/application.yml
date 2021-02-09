@@ -20,3 +20,15 @@ spring:
     url: jdbc:mysql://localhost:3306/escoladb?allowPublicKeyRetieval=true&sslMode=DISABLED&useSSL=false&serverTimezone=America/Sao_Paulo
     username: root
     password: root
+    
+  rabbitmq:
+    host: localhost 
+    port: 5672
+    username: admin
+    password: admin
+    
+crud:
+  rabbitmq:
+    exchange: crud.exchange
+    routingkey: crud.produto
+  
