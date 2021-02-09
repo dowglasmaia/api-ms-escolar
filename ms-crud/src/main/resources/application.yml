@@ -28,7 +28,7 @@ spring:
     password: admin
     
 crud:
-  rabbitmq:
+  rabbitmq: 
     exchange: crud.exchange
-    routingkey: crud.produto
+    routingkey: crud.produto.routingkey
   
