@@ -14,9 +14,6 @@ public class MessageConfig {
 	@Value("${crud.rabbitmq.exchange}")
 	protected String exchange;
 
-	@Value("${crud.rabbitmq.routingkey}")
-	protected String routingkey;
-
 	@Bean
 	public Exchange declareExchange() {
 		return ExchangeBuilder.directExchange(exchange).durable(true).build();

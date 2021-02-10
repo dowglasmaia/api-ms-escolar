@@ -12,7 +12,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-      dialect: org.hibernate.dialect.MySQL8InnoDBDialect  
+      dialect: org.hibernate.dialect.MySQL8Bialect  
 #     org.hibernate.dialect.MySQL5Dialect
   jmx:
     enabled: false
@@ -24,11 +24,10 @@ spring:
   rabbitmq:
     host: localhost 
     port: 5672
-    username: admin
-    password: admin
+    username: maia
+    password: maia
     
 crud:
-  rabbitmq: 
+  rabbitmq:
     exchange: crud.exchange
     routingkey: crud.produto.routingkey
-  
