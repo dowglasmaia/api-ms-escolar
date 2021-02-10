@@ -3,5 +3,4 @@ jdk:
  - oraclejdk11
 dist: trusty
 before_install:
- - chmod +x ./ms-pagamento/mvnw
- - chmod +x ./mms-crud/mvnw
+ - chmod +x mvnw
