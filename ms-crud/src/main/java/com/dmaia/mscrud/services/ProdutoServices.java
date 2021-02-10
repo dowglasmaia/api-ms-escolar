@@ -10,22 +10,26 @@ import org.springframework.stereotype.Service;
 import com.dmaia.mscrud.entity.Produto;
 import com.dmaia.mscrud.entity.vo.ProdutoVO;
 import com.dmaia.mscrud.exceptions.ResourceNotFoundException;
+import com.dmaia.mscrud.message.ProdutoSendMessage;
 import com.dmaia.mscrud.repository.IProdutoRepository;
 
 @Service
 public class ProdutoServices implements IProdutoServices {
 
-	IProdutoRepository produtoRepository;
+	private final IProdutoRepository produtoRepository;
+	private final ProdutoSendMessage produtoSendMessage; 
 
 	@Autowired
-	public ProdutoServices(IProdutoRepository repo) {
+	public ProdutoServices(IProdutoRepository repo,ProdutoSendMessage produtoSendMessage) {
 		this.produtoRepository = repo;
+		this.produtoSendMessage = produtoSendMessage;
 	}
 
 	@Override
 	public ProdutoVO create(ProdutoVO obj) {
 		Produto produto = produtoRepository.save(Produto.converteToProduto(obj));
 		ProdutoVO produtoVO = ProdutoVO.converteToProdutoVO(produto);
+		produtoSendMessage.sendMessage(produtoVO);
 		return produtoVO;
 	}
 

@@ -5,14 +5,14 @@ server:
     
 spring:
   application:
-    name: crud
+    name: ms-crud
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
-      dialect: org.hibernate.dialect.MySQL8InnoDBDialect  
+      dialect: org.hibernate.dialect.MySQL8Bialect  
 #     org.hibernate.dialect.MySQL5Dialect
   jmx:
     enabled: false
@@ -20,3 +20,14 @@ spring:
     url: jdbc:mysql://localhost:3306/escoladb?allowPublicKeyRetieval=true&sslMode=DISABLED&useSSL=false&serverTimezone=America/Sao_Paulo
     username: root
     password: root
+    
+  rabbitmq:
+    host: localhost 
+    port: 5672
+    username: maia
+    password: maia
+    
+crud:
+  rabbitmq:
+    exchange: crud.exchange
+    routingkey: crud.produto.routingkey

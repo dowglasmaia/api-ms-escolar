@@ -1,0 +1,13 @@
+version: '3'
+services: 
+  rabbitmq3: 
+    image: rabbitmq:3-management
+    environment: 
+     - RABBITMQ_ERLANG_COOKIE='secret cookie here'
+     - RABBITMQ_DEFAULT_USER=maia
+     - RABBITMQ_DEFAULT_PASS=maia
+    volumes: 
+     - $PWD/storage/rabbitmq1:/var/lib/rabbitmq
+    ports: 
+      - 5672:5672
+      - 15672:15672

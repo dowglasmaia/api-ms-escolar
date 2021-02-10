@@ -9,11 +9,11 @@
 		<version>2.3.8.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.dmaia</groupId>
-	<artifactId>ms-crud</artifactId>
+	<groupId>com.maia</groupId>
+	<artifactId>ms-pagamento</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-crud</name>
-	<description>Demo project for Spring Boot</description>
+	<name>ms-pagamento</name>
+	<description>Microserviço de Pagamento</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -45,7 +45,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -77,20 +77,8 @@
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>		
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.amqp</groupId>
-			<artifactId>spring-rabbit-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
 	</dependencies>
 
 	<build>

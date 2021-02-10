@@ -1,15 +1,13 @@
-package com.dmaia.mscrud;
+package com.maia.mspagamento;
 
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableRabbit
-public class MsCrudApplication {
+public class MsPagamentoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsCrudApplication.class, args);
+		SpringApplication.run(MsPagamentoApplication.class, args);
 	}
 
 }

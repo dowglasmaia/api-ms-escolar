@@ -1,0 +1,51 @@
+package com.maia.mspagamento.entity.vo;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.maia.mspagamento.entity.Venda;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@JsonPropertyOrder({ "id", "data", "valor", "produtos" })
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(callSuper = false)
+public class VendaVO extends RepresentationModel<VendaVO> implements Serializable {
+	private static final long serialVersionUID = 6352465870933839313L;
+
+	@JsonProperty("id")
+	private Long id;
+
+	@JsonProperty("data")
+	@DateTimeFormat(iso = ISO.DATE)
+	private Date data;
+
+	@JsonProperty("produtos")
+	private Set<ProdutoVendaVO> produtos = new HashSet<>();
+
+	@JsonProperty("valor")
+	private Double valorTotal;
+
+	public static VendaVO create(Venda venda) {
+		return new ModelMapper().map(venda, VendaVO.class);
+	}
+
+}
