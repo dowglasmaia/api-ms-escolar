@@ -7,7 +7,7 @@ services:
      - RABBITMQ_DEFAULT_USER=admin
      - RABBITMQ_DEFAULT_PASS=admin
     volumes: 
-      - ./storage:/var/lib/rabbitmq
+     - $PWD/storage/rabbitmq1:/var/lib/rabbitmq
     ports: 
       - 5672:5672
       - 15672:15672
