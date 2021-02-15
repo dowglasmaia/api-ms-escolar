@@ -1,14 +1,13 @@
-package com.dmaia.mscrud;
+package ord.maia.msauth;
 
-import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsCrudApplication {
+public class MsAuthApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsCrudApplication.class, args);
+		SpringApplication.run(MsAuthApplication.class, args);
 	}
 
 }

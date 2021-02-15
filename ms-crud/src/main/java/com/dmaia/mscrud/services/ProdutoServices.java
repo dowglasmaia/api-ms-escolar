@@ -29,7 +29,9 @@ public class ProdutoServices implements IProdutoServices {
 	public ProdutoVO create(ProdutoVO obj) {
 		Produto produto = produtoRepository.save(Produto.converteToProduto(obj));
 		ProdutoVO produtoVO = ProdutoVO.converteToProdutoVO(produto);
+		
 		produtoSendMessage.sendMessage(produtoVO);
+		
 		return produtoVO;
 	}
 
@@ -52,21 +54,18 @@ public class ProdutoServices implements IProdutoServices {
 		if (!produto.isPresent()) {
 			new ResourceNotFoundException("produto não encontrado para o ID " + obj.getId());
 		}
-
+		produtoSendMessage.sendMessage(obj);
 		return ProdutoVO.converteToProdutoVO( produtoRepository.save(Produto.converteToProduto(obj)) );
 	}
 	
 	@Override
 	public void delete(Long id) {
 		this.findById(id);
-		produtoRepository.deleteById(id);
-		
-	}
-	// 30215252
+		produtoRepository.deleteById(id);		
+	}	
 
 	private ProdutoVO convertToProdutoVO(Produto produto) {
 		return ProdutoVO.converteToProdutoVO(produto);
 	}
-
 	
 }
