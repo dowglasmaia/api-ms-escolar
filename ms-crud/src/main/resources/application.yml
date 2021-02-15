@@ -31,3 +31,7 @@ crud:
   rabbitmq:
     exchange: crud.exchange
     routingkey: crud.produto.routingkey
+    
+logging:
+  file:
+    name: ./log/appfile.log

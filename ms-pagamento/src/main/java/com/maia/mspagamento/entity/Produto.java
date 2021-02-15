@@ -2,10 +2,12 @@ package com.maia.mspagamento.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.modelmapper.ModelMapper;
+
+import com.maia.mspagamento.entity.vo.ProdutoVO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,10 +23,13 @@ import lombok.Setter;
 public class Produto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "estoque", nullable = false, length = 10)
 	private String estoque;
+	
+	public static Produto create(ProdutoVO produtoVO) {
+		return new ModelMapper().map(produtoVO, Produto.class);
+	}
 
 }
