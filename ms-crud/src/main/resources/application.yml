@@ -21,6 +21,7 @@ spring:
     username: root
     password: root
 
+## acesso local: http://localhost:15672/   
   rabbitmq:
     host: localhost 
     port: 5672
