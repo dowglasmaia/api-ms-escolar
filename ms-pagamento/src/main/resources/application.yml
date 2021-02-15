@@ -35,5 +35,5 @@ crud:
     
 logging:
   file:
-    name: ./log/appfile.log
+    name: ../log/ms_pagamento_log/appfile.log
     

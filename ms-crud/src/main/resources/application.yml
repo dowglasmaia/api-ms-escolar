@@ -35,4 +35,4 @@ crud:
     
 logging:
   file:
-    name: ./log/appfile.log
+    name: ../log/ms_crud_log/appfile.log

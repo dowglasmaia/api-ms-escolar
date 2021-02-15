@@ -1,1 +1,12 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /auth
 
+spring:
+  application:
+    name: ms-auth
+    
+logging:
+  file:
+    name: ../log/ms_auth_log/appfile.log
