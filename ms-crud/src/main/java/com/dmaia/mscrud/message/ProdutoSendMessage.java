@@ -11,11 +11,11 @@ import com.dmaia.mscrud.entity.vo.ProdutoVO;
 public class ProdutoSendMessage {
 
 	@Value("${crud.rabbitmq.exchange}")
-	protected String exchange;
-
+	String exchange;
+	
 	@Value("${crud.rabbitmq.routingkey}")
-	protected String routingKey;
-
+	String routingkey;
+	
 	public final RabbitTemplate rabbitTemplate;
 
 	@Autowired
@@ -24,6 +24,6 @@ public class ProdutoSendMessage {
 	}
 	
 	public void sendMessage(ProdutoVO produtoVO) {
-		rabbitTemplate.convertAndSend(exchange, routingKey, produtoVO);
+		rabbitTemplate.convertAndSend(exchange,routingkey,produtoVO);
 	}
 }
