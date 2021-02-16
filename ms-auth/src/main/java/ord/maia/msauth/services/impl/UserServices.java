@@ -6,10 +6,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import ord.maia.msauth.repository.UserRepository;
+import ord.maia.msauth.services.IAuthService;
 
 public class UserServices implements UserDetailsService {
 
 	private final UserRepository userRepository;
+	
 
 	@Autowired
 	public UserServices(UserRepository userRepository) {
@@ -21,5 +23,10 @@ public class UserServices implements UserDetailsService {
 		return userRepository.findByUserName(username).orElseThrow(
 				() -> new UsernameNotFoundException("Usuario não encontrado para o UserName: " + username));
 	}
+
+
+	
+
+	
 
 }

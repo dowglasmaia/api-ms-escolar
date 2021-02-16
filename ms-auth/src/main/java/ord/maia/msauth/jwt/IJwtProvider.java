@@ -1,6 +1,6 @@
 package ord.maia.msauth.jwt;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service 
 public interface IJwtProvider {
 
-	String createToken(String userName, List<String> roles);
+	String createToken(String userName, Set<String> roles);
 	
 	String resolveToken(HttpServletRequest req);
 	

@@ -3,6 +3,7 @@ package ord.maia.msauth.jwt.impl;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -58,7 +59,7 @@ public class JwtTokenProvider implements IJwtProvider {
 		
 	
 	@Override
-	public String createToken(String userName, List<String> roles) {		
+	public String createToken(String userName, Set<String> roles) {		
 		Claims clains = Jwts.claims().setSubject(userName);
 		clains.put("roles", roles);
 		
