@@ -1,4 +1,4 @@
-package ord.maia.msauth.security;
+package ord.maia.msauth.jwt;
 
 import java.util.List;
 

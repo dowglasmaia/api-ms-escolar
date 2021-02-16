@@ -1,4 +1,4 @@
-package ord.maia.msauth.security.impl;
+package ord.maia.msauth.jwt.impl;
 
 import java.io.IOException;
 
@@ -39,7 +39,6 @@ public class JwtTokenFilter extends GenericFilterBean {
 			}
 		}
 		chain.doFilter(request, response);
-
 	}
 
 }
