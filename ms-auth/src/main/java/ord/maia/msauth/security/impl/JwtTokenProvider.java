@@ -1,4 +1,4 @@
-package ord.maia.msauth.services.impl;
+package ord.maia.msauth.security.impl;
 
 import java.util.Base64;
 import java.util.Date;
@@ -22,7 +22,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import ord.maia.msauth.services.IJwtProvider;
+import ord.maia.msauth.security.IJwtProvider;
 
 @Slf4j
 @Service
