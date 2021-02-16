@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j2;
-import ord.maia.msauth.jwt.impl.JwtTokenProvider;
+import ord.maia.msauth.jwt.IJwtTokenProvider;
 import ord.maia.msauth.repository.UserRepository;
 import ord.maia.msauth.services.IAuthService;
 
@@ -20,11 +20,11 @@ import ord.maia.msauth.services.IAuthService;
 public class AuthService implements IAuthService {
 
 	private final AuthenticationManager authenticationManager;
-	private final JwtTokenProvider jwtTokenProvider;
+	private final IJwtTokenProvider jwtTokenProvider;
 	private final UserRepository userRepository;
 
 	@Autowired
-	public AuthService(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
+	public AuthService(AuthenticationManager authenticationManager, IJwtTokenProvider jwtTokenProvider,
 			UserRepository userRepository) {
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenProvider = jwtTokenProvider;

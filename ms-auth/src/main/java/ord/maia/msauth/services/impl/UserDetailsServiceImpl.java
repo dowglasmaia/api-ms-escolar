@@ -6,15 +6,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import ord.maia.msauth.repository.UserRepository;
-import ord.maia.msauth.services.IAuthService;
 
-public class UserServices implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private final UserRepository userRepository;
 	
 
 	@Autowired
-	public UserServices(UserRepository userRepository) {
+	public UserDetailsServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 

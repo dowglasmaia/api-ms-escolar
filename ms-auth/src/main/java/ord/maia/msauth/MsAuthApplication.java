@@ -1,6 +1,7 @@
 package ord.maia.msauth;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,45 +20,47 @@ public class MsAuthApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MsAuthApplication.class, args);
 	}
-	
+
 	@Bean
 	CommandLineRunner init(UserRepository userRepository, PermissionRepository permissionRepository,
 			BCryptPasswordEncoder passwordEncoder) {
 		return args -> {
 			initUsers(userRepository, permissionRepository, passwordEncoder);
 		};
-
 	}
 
-	private void initUsers(
-			UserRepository userRepository, 
-			PermissionRepository permissionRepository,
+	private void initUsers(UserRepository userRepository, PermissionRepository permissionRepository,
 			BCryptPasswordEncoder passwordEncoder) {
-		
-		Permission permission = null;
-		
-		Permission findPermission = permissionRepository.findByDescription("Admin").get();
-		if (findPermission == null) {
-			permission = new Permission();
-			permission.setDescription("Admin");
-			permission = permissionRepository.save(permission);
-		} else {
-			permission = findPermission;
-		}
-		
-		User admin = new User();
-		admin.setUserName("dowglasmaia");
-		admin.setAccountNonExpired(true);
-		admin.setAccountNonLocked(true);
-		admin.setCredentialsNonExpired(true);
-		admin.setEnabled(true);
-		admin.setPassword(passwordEncoder.encode("123456"));
-		admin.getPermissoes().addAll(Arrays.asList(permission));
 
-		User find = userRepository.findByUserName("dowglasmaia").get();
-		if (find == null) {
-			userRepository.save(admin);
+		boolean permission = permissionRepository.findByDescription("Admin").isPresent();
+
+		System.out.println(permission);
+		Permission p1 = null;
+		if (!permission) {
+			 p1 = new Permission(null, "Admin");
+			 p1 = permissionRepository.save(p1);
+		} else {
+			 p1 = permissionRepository.findByDescription("Admin").get();
 		}
+
+		boolean user = userRepository.findByUserName("dowglasmaia").isPresent();
+		if (!user) {
+			User admin = new User();
+			admin.setUserName("dowglasmaia");
+			admin.setAccountNonExpired(true);
+			admin.setAccountNonLocked(true);
+			admin.setCredentialsNonExpired(true);
+			admin.setEnabled(true);
+			admin.setPassword(passwordEncoder.encode("123456"));
+			
+			admin.getPermissoes().add(p1);
+			
+			userRepository.save(admin);
+
+		} else {
+			var admin = userRepository.findByUserName("dowglasmaia").get();
+		}
+
 	}
 
 }

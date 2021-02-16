@@ -1,5 +1,7 @@
 package ord.maia.msauth.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,46 +10,55 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import ord.maia.msauth.jwt.impl.JwtTokenProvider;
+import ord.maia.msauth.jwt.IJwtTokenProvider;
 import ord.maia.msauth.jwt.impl.Jwtconfigure;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	private final JwtTokenProvider jwtTokenProvider;
+	
+	private final IJwtTokenProvider jwtTokenProvider;	
 
 	@Autowired
-	public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
+	public SecurityConfig(IJwtTokenProvider jwtTokenProvider) {
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
 	@Override
-	protected AuthenticationManager authenticationManager() throws Exception {
+	public AuthenticationManager authenticationManagerBean()  throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.httpBasic().disable()
-			.csrf().disable()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-				.authorizeRequests()
-				.antMatchers("/login").permitAll()
-				.anyRequest().authenticated()
-			.and()
-			.apply(new Jwtconfigure(jwtTokenProvider));
+		http.httpBasic().disable().csrf().disable().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+					.authorizeRequests()
+					.antMatchers("/login")
+					.permitAll()
+					.anyRequest()
+					.authenticated()
+				.and()
+					.apply(new Jwtconfigure(jwtTokenProvider));
 	}
 	
-	
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS")); 
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
 
+	}
 }

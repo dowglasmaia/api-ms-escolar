@@ -14,14 +14,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import lombok.extern.log4j.Log4j2;
+import ord.maia.msauth.jwt.IJwtTokenProvider;
 
 @Log4j2
 public class JwtTokenFilter extends GenericFilterBean {
 
-	private final JwtTokenProvider tokenProvider;
+	private final IJwtTokenProvider tokenProvider;
 
 	@Autowired
-	public JwtTokenFilter(JwtTokenProvider tokenProvider) {
+	public JwtTokenFilter(IJwtTokenProvider tokenProvider) {
 		this.tokenProvider = tokenProvider;
 	}
 
