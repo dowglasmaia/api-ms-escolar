@@ -1,19 +1,20 @@
-package ord.maia.msauth.services.impl;
+package ord.maia.msauth.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import ord.maia.msauth.repository.UserRepository;
 
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service
+public class UserService implements UserDetailsService {
 
 	private final UserRepository userRepository;
-	
 
 	@Autowired
-	public UserDetailsServiceImpl(UserRepository userRepository) {
+	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
@@ -22,10 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return userRepository.findByUserName(username).orElseThrow(
 				() -> new UsernameNotFoundException("Usuario não encontrado para o UserName: " + username));
 	}
-
-
-	
-
 	
 
 }

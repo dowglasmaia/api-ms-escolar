@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ord.maia.msauth.config.security.IAuthService;
 import ord.maia.msauth.entity.vo.UserVO;
-import ord.maia.msauth.services.IAuthService;
 
 @RestController
 @RequestMapping("/login")

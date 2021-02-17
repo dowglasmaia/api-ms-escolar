@@ -1,4 +1,4 @@
-package ord.maia.msauth.jwt.impl;
+package ord.maia.msauth.config.security;
 
 import java.io.IOException;
 
@@ -14,15 +14,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 import lombok.extern.log4j.Log4j2;
-import ord.maia.msauth.jwt.IJwtTokenProvider;
 
 @Log4j2
 public class JwtTokenFilter extends GenericFilterBean {
 
-	private final IJwtTokenProvider tokenProvider;
+	private final JwtTokenProvider tokenProvider;
 
 	@Autowired
-	public JwtTokenFilter(IJwtTokenProvider tokenProvider) {
+	public JwtTokenFilter(JwtTokenProvider tokenProvider) {
 		this.tokenProvider = tokenProvider;
 	}
 

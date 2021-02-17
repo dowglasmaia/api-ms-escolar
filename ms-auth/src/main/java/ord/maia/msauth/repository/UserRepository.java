@@ -12,6 +12,6 @@ import ord.maia.msauth.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 	
-	@Query("SELECT u FROM User u WHERE u.userName = :userName")
+	@Query("SELECT u FROM User u WHERE u.userName =:userName")
 	Optional<User>findByUserName(@Param("userName") String userName);
 }

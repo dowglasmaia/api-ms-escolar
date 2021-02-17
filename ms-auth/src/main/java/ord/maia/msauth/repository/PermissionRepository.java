@@ -12,7 +12,7 @@ import ord.maia.msauth.entity.Permission;
 @Repository
 public interface PermissionRepository extends JpaRepository<Permission, Long> {
 	
-	@Query("SELECT p FROM Permission p WHERE p.description = :description")
+	@Query("SELECT p FROM Permission p WHERE p.description =:description")
 	Optional<Permission>findByDescription(@Param("description") String description);
 
 }
