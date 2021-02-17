@@ -33,6 +33,12 @@ crud:
     exchange: crud.exchange
     routingkey: crud.produto.routingkey
     
+## CONF PARA TOKEN    
+security:
+  jwt:
+    token:
+      secret-key: chave_microservices
+    
 logging:
   file:
     name: ../log/ms_crud_log/appfile.log
