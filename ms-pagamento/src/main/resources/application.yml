@@ -33,7 +33,13 @@ crud:
     exchange: crud.exchange
     queue: crud.produto.queue
     
+## CONF PARA TOKEN    
+security:
+  jwt:
+    token:
+      secret-key: chave_microservices
+    
 logging:
   file:
-    name: ./log/appfile.log
+    name: ../log/ms_pagamento_log/appfile.log
     
