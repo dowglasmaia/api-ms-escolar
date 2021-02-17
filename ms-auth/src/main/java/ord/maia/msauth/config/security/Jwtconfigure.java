@@ -1,4 +1,4 @@
-package ord.maia.msauth.jwt.impl;
+package ord.maia.msauth.config.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -6,21 +6,21 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import ord.maia.msauth.jwt.IJwtTokenProvider;
-
 public class Jwtconfigure extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
-	private final IJwtTokenProvider jwtTokenProvider;
+	private final JwtTokenProvider jwtTokenProvider;
 
 	@Autowired
-	public Jwtconfigure(IJwtTokenProvider jwtTokenProvider) {
+	public Jwtconfigure(JwtTokenProvider jwtTokenProvider) {
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		JwtTokenFilter filter = new JwtTokenFilter(jwtTokenProvider);
-		http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+		JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);
+		http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
 	}
+	
+	
 
 }
