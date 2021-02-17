@@ -1,0 +1,19 @@
+
+server:
+  port: 8761
+  servlet:
+    context-path: /discovery
+
+spring:
+  application:
+    name: eureka-server-discovery
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+logging:
+  file:
+    name: ../log/ms_discovery_log/appfile.log
